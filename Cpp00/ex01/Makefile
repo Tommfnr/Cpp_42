@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = PhoneBook
 
 SRC = 	main.cpp \
-		PhoneBook.cpp
+		Contact.cpp
 
 OBJ_DIR = build
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
