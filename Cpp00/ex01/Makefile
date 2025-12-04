@@ -5,6 +5,9 @@ NAME = PhoneBook
 SRC = 	main.cpp \
 		Contact.cpp
 
+HEADERS = 	PhoneBook.hpp \
+			Contact.hpp
+
 OBJ_DIR = build
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
@@ -14,7 +17,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 	@echo "Programme compilé !"
 
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

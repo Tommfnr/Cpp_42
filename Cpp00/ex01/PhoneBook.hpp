@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:13:39 by tfournie          #+#    #+#             */
-/*   Updated: 2025/12/02 12:53:36 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/12/03 11:45:27 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@
 #include "Contact.hpp"
 
 class PhoneBook {
+
+    private:
+    
+    Contact contact_l[8];
+    int nb_contact;
     
     public:
     
-        Contact contact_l[8];
         
         PhoneBook(void);
-        void search();
-        std::string print_field(std::string field);
-        std::string readField(const std::string &prompt);
+        void print_contact();
+        void Search();
+        void Add();
 
-        int nb_contact;
 };
 
 #endif
