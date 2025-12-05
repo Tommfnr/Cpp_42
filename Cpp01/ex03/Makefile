@@ -3,6 +3,9 @@ CFLAGS  = -Wall -Wextra -Werror -std=c++98 -MMD -MP
 NAME    = Brain
 
 SRC =   main.cpp \
+		HumanA.cpp \
+		HumanB.cpp \
+		Weapon.cpp \
 
 OBJ_DIR = build
 OBJ     = $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
