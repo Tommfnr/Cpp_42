@@ -1,5 +1,4 @@
 #include "Zombie.hpp"
-#include <iostream>
 
 // Déclaration des fonctions externes
 Zombie* newZombie(std::string name);
