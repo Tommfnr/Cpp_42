@@ -1,6 +1,6 @@
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98 -MMD -MP
-NAME    = Brain
+NAME    = Human
 
 SRC =   main.cpp \
 		HumanA.cpp \

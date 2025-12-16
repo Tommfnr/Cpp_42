@@ -9,7 +9,7 @@ void HumanB::setWeapon(Weapon &weapon) {
 }
 
 void HumanB::attack() const{
-    if (_Weapon->getType() == ""){
+    if (!_Weapon){
         std::cout << _name << " attacks with their hand"<< std::endl;
         return ;
     }

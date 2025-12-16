@@ -1,6 +1,5 @@
 #include "Zombie.hpp"
 
-// Déclaration des fonctions externes
 Zombie* newZombie(std::string name);
 void randomChump(std::string name);
 
@@ -14,7 +13,7 @@ int main()
     zombie2->announce();
 
     std::cout << "Suppression des zombies du tas..." << std::endl;
-    delete zombie1; // destructeur appelé
+    delete zombie1;
     delete zombie2;
 
     std::cout << "\n=== Test création sur la pile ===" << std::endl;
@@ -23,12 +22,10 @@ int main()
 
     stackZombie1.announce();
     stackZombie2.announce();
-    // Pas besoin de delete, destructeur automatique à la fin du scope
 
     std::cout << "\n=== Test randomChump ===" << std::endl;
     randomChump("RandomOne");
     randomChump("RandomTwo");
-    // Les zombies sont détruits à la fin de la fonction
 
     std::cout << "\n=== Test mélange heap et pile ===" << std::endl;
     Zombie stackZombie3("StackThree");
