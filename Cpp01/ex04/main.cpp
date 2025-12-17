@@ -55,7 +55,7 @@ int main(int ac, char **av)
                 i++;
             }
         }
-        file_out << buffer;
+        file_out << buffer << '\n';
     }
     return 0;
 }
