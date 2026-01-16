@@ -4,6 +4,9 @@
 
 ClapTrap::ClapTrap()
 {
+    _Hit_p = 10;
+    _Energie_p = 10;
+    _Attack_p = 0;
     std::cout << "Default constructor called" << std::endl;
 }
 
@@ -34,14 +37,6 @@ ClapTrap::~ClapTrap()
     
 }
 
-const std::string& ClapTrap::getName() const {
-    return (_name);
-}
-
-const int& ClapTrap::getAttack_p() const {
-    return (_Attack_p);
-}
-
 ClapTrap::ClapTrap(std::string name)
     : _name(name), _Hit_p(10), _Energie_p(10), _Attack_p(0)
 {
@@ -62,7 +57,7 @@ void ClapTrap::attack(const std::string& target)
         return;
     }
     _Energie_p--;
-    std::cout << "ClapTrap " << getName() << " attacks " <<  target << ", causing " << getAttack_p() << " points of damage!" << std::endl;
+    std::cout << "ClapTrap " << _name << " attacks " <<  target << ", causing " << _Attack_p << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
