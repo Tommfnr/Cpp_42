@@ -1,11 +1,13 @@
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98 -MMD -MP
-NAME    = FragTrap
+NAME    = Lab
 
 SRC =   main.cpp \
-		ScavTrap.cpp \
-		ClapTrap.cpp \
-		FragTrap.cpp \
+		Animal.cpp \
+		Cat.cpp \
+		Dog.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp \
 
 OBJ_DIR = build
 OBJ     = $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))

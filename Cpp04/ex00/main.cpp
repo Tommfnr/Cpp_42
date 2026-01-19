@@ -1,18 +1,35 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include <iostream>
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
-const Animal* meta = new Animal();
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-std::cout << j->getType() << " " << std::endl;
-std::cout << i->getType() << " " << std::endl;
-i->makeSound(); //will output the cat sound!
-j->makeSound();
-meta->makeSound();
-...
-return 0;
+    std::cout << "----- Correct Polymorphism -----" << std::endl;
+    const Animal* meta = new Animal();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
+
+    std::cout << dog->getType() << std::endl;
+    std::cout << cat->getType() << std::endl;
+
+    dog->makeSound(); // Woof
+    cat->makeSound(); // Meow
+    meta->makeSound();
+
+    delete meta;
+    delete dog;
+    delete cat;
+
+    std::cout << "\n----- Wrong Polymorphism -----" << std::endl;
+    const WrongAnimal* wrong = new WrongAnimal();
+    const WrongAnimal* wrongcat = new WrongCat();
+    wrong->makeSound(); // WrongAnimal sound
+    wrongcat->makeSound(); // WrongCat sound
+
+    delete wrong;
+    delete wrongcat;
+
+    return 0;
 }
