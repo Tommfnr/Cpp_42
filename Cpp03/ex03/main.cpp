@@ -1,59 +1,31 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 #include <iostream>
 
 int main()
 {
-    std::cout << "========== BASIC CONSTRUCTION ==========" << std::endl;
-    DiamondTrap d("Ruby");
+    std::cout << "=== Création de DiamondTrap dt1 ===" << std::endl;
+    DiamondTrap dt1("DiamondOne");
 
-    std::cout << "\n========== ATTACK TEST (ScavTrap attack) ==========" << std::endl;
-    d.attack("Enemy");
+    std::cout << "\n=== Test des stats et attack ===" << std::endl;
+    dt1.attack("Target1");       // doit utiliser ScavTrap::attack
+    dt1.takeDamage(20);          // prend des dégâts
+    dt1.beRepaired(15);          // se soigne
+    dt1.highFivesGuys();         // méthode FragTrap
+    dt1.whoAmI();                // affiche son nom et celui du ClapTrap
 
-    std::cout << "\n========== SPECIAL ABILITIES ==========" << std::endl;
-    d.guardGate();        // from ScavTrap
-    d.highFivesGuys();    // from FragTrap
+    std::cout << "\n=== Test du constructeur par copie ===" << std::endl;
+    DiamondTrap dt2(dt1);
+    dt2.whoAmI();
+    dt2.attack("Target2");
 
-    std::cout << "\n========== WHO AM I ==========" << std::endl;
-    d.whoAmI();
+    std::cout << "\n=== Test de l'opérateur d'assignation ===" << std::endl;
+    DiamondTrap dt3;
+    dt3 = dt1;
+    dt3.whoAmI();
+    dt3.takeDamage(50);
+    dt3.beRepaired(30);
 
-    std::cout << "\n========== ENERGY DEPLETION ==========" << std::endl;
-    for (int i = 0; i < 55; i++)
-        d.attack("Dummy");
+    std::cout << "\n=== Test du destructeur ===" << std::endl;
 
-    std::cout << "\n========== ACTIONS WITHOUT ENERGY ==========" << std::endl;
-    d.attack("NoEnergyTarget");
-    d.beRepaired(10);
-
-    std::cout << "\n========== DAMAGE & DEATH ==========" << std::endl;
-    d.takeDamage(30);
-    d.takeDamage(50);
-    d.takeDamage(100);
-
-    std::cout << "\n========== ACTIONS WHEN DEAD ==========" << std::endl;
-    d.attack("Ghost");
-    d.beRepaired(5);
-    d.guardGate();
-    d.highFivesGuys();
-
-    std::cout << "\n========== COPY CONSTRUCTOR ==========" << std::endl;
-    DiamondTrap copy(d);
-    copy.whoAmI();
-
-    std::cout << "\n========== COPY ASSIGNMENT ==========" << std::endl;
-    DiamondTrap assign;
-    assign = d;
-    assign.whoAmI();
-
-    std::cout << "\n========== POLYMORPHISM TEST ==========" << std::endl;
-    ClapTrap* base = new DiamondTrap("Poly");
-    base->attack("Target");   // must use ScavTrap attack
-    delete base;               // must call all destructors in order
-
-    std::cout << "\n========== END OF SCOPE ==========" << std::endl;
     return 0;
 }
-
-

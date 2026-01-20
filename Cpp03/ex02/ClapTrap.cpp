@@ -67,9 +67,10 @@ void ClapTrap::takeDamage(unsigned int amount)
         return;
     }
 
-    _Hit_p -= amount;
-    if (_Hit_p < 0)
+    if (amount >= static_cast<unsigned int>(_Hit_p))
         _Hit_p = 0;
+    else
+        _Hit_p -= amount;
 
     std::cout << "ClapTrap " << _name
               << " takes " << amount
