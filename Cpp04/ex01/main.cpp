@@ -1,28 +1,58 @@
+#include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "Brain.hpp"
 
 int main()
 {
-    Animal* animals[10];
+    std::cout << "===== TEST 1 : Destruction polymorphique simple =====" << std::endl;
+    {
+        const Animal* j = new Dog();
+        const Animal* i = new Cat();
 
-    for (int i = 0; i < 5; i++)
-        animals[i] = new Dog();
-    for (int i = 5; i < 10; i++)
-        animals[i] = new Cat();
+        delete j; // doit appeler ~Dog puis ~Animal
+        delete i; // doit appeler ~Cat puis ~Animal
+    }
 
-    for (int i = 0; i < 10; i++)
-        delete animals[i]; // polymorphisme + destructeurs virtuels
+    std::cout << "\n===== TEST 2 : Tableau d'Animal (polymorphisme) =====" << std::endl;
+    {
+        const int size = 10;
+        Animal* animals[size];
 
-    // TEST DEEP COPY
-    Dog a;
-    a.getBrain()->setIdea(0, "I love bones");
+        for (int i = 0; i < size; i++)
+        {
+            if (i < size / 2)
+                animals[i] = new Dog();
+            else
+                animals[i] = new Cat();
+        }
 
-    Dog b = a;
-    b.getBrain()->setIdea(0, "I love cats");
+        std::cout << "\n--- Suppression du tableau ---" << std::endl;
+        for (int i = 0; i < size; i++)
+            delete animals[i]; 
+    }
 
-    std::cout << a.getBrain()->getIdea(0) << std::endl; // bones
-    std::cout << b.getBrain()->getIdea(0) << std::endl; // cats
+    std::cout << "\n===== TEST 3 : Deep Copy (copie profonde) =====" << std::endl;
+    {
+        Dog original;
+        original.getBrain()->setIdea(0, "Je veux un os");
+        original.getBrain()->setIdea(1, "Je veux courir");
+
+        Dog copy(original);
+
+        std::cout << "Original idea[0]: "
+                  << original.getBrain()->getIdea(0) << std::endl;
+        std::cout << "Copy idea[0]: "
+                  << copy.getBrain()->getIdea(0) << std::endl;
+        original.getBrain()->setIdea(0, "Nouvelle idée");
+
+        std::cout << "\nAprès modification de l'original :" << std::endl;
+        std::cout << "Original idea[0]: "
+                  << original.getBrain()->getIdea(0) << std::endl;
+        std::cout << "Copy idea[0]: "
+                  << copy.getBrain()->getIdea(0) << std::endl;
+    }
+
+    std::cout << "\n===== FIN DES TESTS =====" << std::endl;
+    return 0;
 }
-
