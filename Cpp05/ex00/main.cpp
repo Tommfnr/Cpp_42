@@ -11,6 +11,10 @@ int main()
         a.incrementGrade();
         std::cout << a << std::endl;
 
+        a.decrementGrade();
+        std::cout << a << std::endl;
+
+        a.incrementGrade();
         a.incrementGrade(); // should throw
     }
     catch (std::exception& e)
