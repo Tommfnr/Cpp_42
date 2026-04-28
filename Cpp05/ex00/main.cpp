@@ -2,6 +2,7 @@
 
 int main()
 {
+    std::cout << "|1 test:\n\n";
     try
     {
         Bureaucrat a("Alice", 2);
@@ -17,6 +18,7 @@ int main()
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
+    std::cout << "\n|2 test:\n\n";
     try
     {
         Bureaucrat b("Bob", 151); // should throw
