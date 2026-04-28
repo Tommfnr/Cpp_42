@@ -3,7 +3,7 @@
 
 int main()
 {
-    std::cout << "-1 test:\n\n";
+    std::cout << "=========== 1 test: ===========\n\n";
     try
     {
         Bureaucrat a("Alice", 2);
@@ -23,7 +23,7 @@ int main()
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n-2 test:\n\n";
+    std::cout << "\n=========== 2 test: ===========\n\n";
     try
     {
         Bureaucrat b("Bob", 151); // should throw
@@ -33,10 +33,10 @@ int main()
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n-3 test:\n\n";
+    std::cout << "\n=========== 3 test: ===========\n\n";
     try
     {
-        Form f("Papier", 20, 1); //debug tester 0
+        Form f("Papier", 20, 1);
         std::cout << f << std::endl;
 
         Bureaucrat a("Matheo", 127);
@@ -48,6 +48,7 @@ int main()
         a.signForm(f);
         b.signForm(f);
 
+        Form h("hmm", 20, -10);
         
     }
     catch (std::exception& e)
