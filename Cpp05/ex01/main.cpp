@@ -3,12 +3,9 @@
 
 int main()
 {
-    std::cout << "|1 test:\n\n";
+    std::cout << "-1 test:\n\n";
     try
     {
-        Form f;
-        std::cout << f << std::endl;
-        
         Bureaucrat a("Alice", 2);
         std::cout << a << std::endl;
 
@@ -26,10 +23,32 @@ int main()
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n|2 test:\n\n";
+    std::cout << "\n-2 test:\n\n";
     try
     {
         Bureaucrat b("Bob", 151); // should throw
+    }
+    catch (std::exception& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+
+    std::cout << "\n-3 test:\n\n";
+    try
+    {
+        Form f("Papier", 20, 1); //debug tester 0
+        std::cout << f << std::endl;
+
+        Bureaucrat a("Matheo", 127);
+        std::cout << a << std::endl;
+
+        Bureaucrat b("Raff", 13);
+        std::cout << b << std::endl;
+
+        a.signForm(f);
+        b.signForm(f);
+
+        
     }
     catch (std::exception& e)
     {
