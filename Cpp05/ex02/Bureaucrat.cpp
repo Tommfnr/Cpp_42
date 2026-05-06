@@ -75,7 +75,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
     return os;
 }
 
-void Bureaucrat::executeForm(AForm const & form) const{        //a changer
+void Bureaucrat::executeForm(AForm const & form) const{
     try
     {
         form.execute(*this);
