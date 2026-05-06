@@ -2,6 +2,8 @@
 #include <time.h>
 #include <ctime>
 #include <cstdlib>
+#include <stdexcept>
+
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("drilling", 72, 45), _target("drilling"){}
 
@@ -29,9 +31,8 @@ void RobotomyRequestForm::executeAction() const {
 
     std::cout << "* drilling noises *\n";
 
-    if (std::rand() % 2) {
+    if (std::rand() % 2)
         std::cout << _target << " has been robotomized successfully.\n";
-    } else {
-        std::cout << "Robotomy failed on " << _target << ".\n";
-    }
+    else
+        std::cout << _target << " robotomy failed.\n";
 }

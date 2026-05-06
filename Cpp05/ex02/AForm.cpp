@@ -53,7 +53,7 @@ void AForm::execute(Bureaucrat const & executor) const
 {
     if (!_signed)
         throw NotSigned();
-    if (executor.getGrade() >= _gradeExecute)
+    if (executor.getGrade() > _gradeExecute)
         throw GradeTooLowException();
     executeAction();
 }
@@ -72,6 +72,6 @@ const char* AForm::GradeTooLowException::what() const throw(){
 
 std::ostream& operator<<(std::ostream& os, const AForm& f)
 {
-    os << "AForm name: " << f.getName() << ",\n| Signed: " << (f.getSigned() ? "yes" : "no") << ",\n| Grade to sign: "<< f.getGradeS() << ",\n| Grade to execute: " << f.getGradeS() << ".\n";
+    os << "AForm name: " << f.getName() << ",\n| Signed: " << (f.getSigned() ? "yes" : "no") << ",\n| Grade to sign: "<< f.getGradeS() << ",\n| Grade to execute: " << f.getGradeE() << ".\n";
     return os;
 }

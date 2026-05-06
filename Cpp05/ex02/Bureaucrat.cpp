@@ -75,7 +75,13 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
     return os;
 }
 
-void Bureaucrat::executeForm(AForm const & form) const{             //a changer
-    form.execute(*this);
-    std::cout << _name << " executed " << form.getName() << std::endl;
+void Bureaucrat::executeForm(AForm const & form) const{        //a changer
+    try
+    {
+        form.execute(*this);
+        std::cout << _name << " executed " << form.getName() << std::endl;
+    }
+    catch(std::exception& e){
+        std::cout << _name << " didn't execute " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
