@@ -14,6 +14,13 @@ enum e_type {
     PSEUDO  // nan, inf, etc.
 };
 
+// ─── Forme canonique (privée = non instanciable) ─────────────────────────────
+
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &src) { (void)src; }
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs) { (void)rhs; return *this; }
+ScalarConverter::~ScalarConverter() {}
+
 // ─── Fonctions de détection ──────────────────────────────────────────────────
 
 // Un pseudo-literal est une valeur spéciale comme nan, +inf, -inf (et leurs variantes float)
