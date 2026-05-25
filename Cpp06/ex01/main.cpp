@@ -1,61 +1,35 @@
-#include "ScalarConverter.hpp"
+#include <iostream>
+#include <cstring>
+#include "Serializer.hpp"
 
 int main()
 {
-    // Char literal
-    std::cout << "=== char ===" << std::endl;
-    ScalarConverter::convert("'a'");
+    Data original;
+    original.id = 42;
+    original.value = 3.14f;
+    std::strncpy(original.name, "hello", 31);
+
+    std::cout << "Original pointer : " << &original << std::endl;
+    std::cout << "id    : " << original.id << std::endl;
+    std::cout << "value : " << original.value << std::endl;
+    std::cout << "name  : " << original.name << std::endl;
     std::cout << std::endl;
 
-    // Int literals
-    std::cout << "=== int ===" << std::endl;
-    ScalarConverter::convert("0");
-    std::cout << std::endl;
-    ScalarConverter::convert("42");
-    std::cout << std::endl;
-    ScalarConverter::convert("-2147483648");  // INT_MIN
-    std::cout << std::endl;
-    ScalarConverter::convert("2147483647");   // INT_MAX
+    uintptr_t raw = Serializer::serialize(&original);
+    std::cout << "Serialized (uintptr_t) : " << raw << std::endl;
     std::cout << std::endl;
 
-    // Float literals
-    std::cout << "=== float ===" << std::endl;
-    ScalarConverter::convert("3.14f");
-    std::cout << std::endl;
-    ScalarConverter::convert("-0.5f");
-    std::cout << std::endl;
-
-    // Double literals
-    std::cout << "=== double ===" << std::endl;
-    ScalarConverter::convert("3.14");
-    std::cout << std::endl;
-    ScalarConverter::convert("-42.0");
+    Data* recovered = Serializer::deserialize(raw);
+    std::cout << "Recovered pointer : " << recovered << std::endl;
+    std::cout << "id    : " << recovered->id << std::endl;
+    std::cout << "value : " << recovered->value << std::endl;
+    std::cout << "name  : " << recovered->name << std::endl;
     std::cout << std::endl;
 
-    // Pseudo-literals
-    std::cout << "=== pseudo ===" << std::endl;
-    ScalarConverter::convert("nan");
-    std::cout << std::endl;
-    ScalarConverter::convert("nanf");
-    std::cout << std::endl;
-    ScalarConverter::convert("+inf");
-    std::cout << std::endl;
-    ScalarConverter::convert("-inf");
-    std::cout << std::endl;
-    ScalarConverter::convert("+inff");
-    std::cout << std::endl;
-    ScalarConverter::convert("-inff");
-    std::cout << std::endl;
-
-    // Cas limites
-    std::cout << "=== edge cases ===" << std::endl;
-    ScalarConverter::convert("0");        // char Non displayable
-    std::cout << std::endl;
-    ScalarConverter::convert("127");      // char max
-    std::cout << std::endl;
-    ScalarConverter::convert("128");      // char impossible
-    std::cout << std::endl;
-    ScalarConverter::convert("notvalid"); // input invalide
+    if (recovered == &original)
+        std::cout << "Pointers match: OK" << std::endl;
+    else
+        std::cout << "Pointers do NOT match: FAIL" << std::endl;
 
     return 0;
 }

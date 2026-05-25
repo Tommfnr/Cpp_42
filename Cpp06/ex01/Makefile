@@ -1,10 +1,9 @@
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98 -MMD -MP
-NAME    = convert
+NAME    = serializer
 
 SRC =   main.cpp \
-		ScalarConverter.cpp \
-		
+        Serializer.cpp \
 
 OBJ_DIR = build
 OBJ     = $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
@@ -12,8 +11,6 @@ DEPS    = $(OBJ:.o=.d)
 
 GREEN   = \033[32m
 RED     = \033[31m
-BLUE    = \033[34m
-BOLD    = \033[1m
 RESET   = \033[0m
 
 MAKEFLAGS += --no-print-directory
