@@ -56,6 +56,11 @@ int main()
     ScalarConverter::convert("128");      // char impossible
     std::cout << std::endl;
     ScalarConverter::convert("notvalid"); // input invalide
+    std::cout << std::endl;
+
+    //R
+    ScalarConverter::convert("");
+    std::cout << std::endl;
 
     return 0;
 }
