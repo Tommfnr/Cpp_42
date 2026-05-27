@@ -5,7 +5,6 @@
 #include <iomanip>   // setprecision, fixed
 #include <limits>    // numeric_limits
 
-// Les types que l'on peut détecter dans la string
 enum e_type {
     CHAR,
     INT,
@@ -13,8 +12,6 @@ enum e_type {
     DOUBLE,
     PSEUDO  // nan, inf, etc.
 };
-
-// ─── Forme canonique (privée = non instanciable) ─────────────────────────────
 
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::ScalarConverter(const ScalarConverter &src) { (void)src; }
@@ -51,7 +48,6 @@ static bool isDouble(const std::string &s)
     return (*end == '\0' && s.find('.') != std::string::npos);
 }
 
-// Un int ne contient que des chiffres (avec éventuel '-' en début), ex: 42
 static bool isInt(const std::string &s)
 {
     if (s.empty())
@@ -99,7 +95,6 @@ static void printFloat(double val)
         std::cout << "float: " << (f > 0 ? "+" : "-") << "inff" << std::endl;
     else
     {
-        // fixed + setprecision(1) garantit au moins un chiffre après la virgule
         std::cout << std::fixed << std::setprecision(1);
         std::cout << "float: " << f << "f" << std::endl;
     }
