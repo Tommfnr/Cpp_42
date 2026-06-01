@@ -8,8 +8,10 @@ Base::~Base() {}
 Base* generate(void)
 {
     int r = std::rand() % 3;
-    if (r == 0) return new A();
-    if (r == 1) return new B();
+    if (r == 0)
+        return new A();
+    if (r == 1)
+        return new B();
     return new C();
 }
 
