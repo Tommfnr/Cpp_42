@@ -2,13 +2,7 @@
 #define SERIALIZER_HPP
 
 #include <stdint.h>
-
-struct Data
-{
-    int     id;
-    float   value;
-    char    name[32];
-};
+#include "Data.hpp"
 
 class Serializer
 {

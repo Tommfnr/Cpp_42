@@ -7,7 +7,7 @@ int main()
     Data original;
     original.id = 42;
     original.value = 3.14f;
-    std::strncpy(original.name, "hello", 31);
+    original.name = "coucou";
 
     std::cout << "Original pointer : " << &original << std::endl;
     std::cout << "id    : " << original.id << std::endl;
@@ -26,10 +26,7 @@ int main()
     std::cout << "name  : " << recovered->name << std::endl;
     std::cout << std::endl;
 
-    if (recovered == &original)
-        std::cout << "Pointers match: OK" << std::endl;
-    else
-        std::cout << "Pointers do NOT match: FAIL" << std::endl;
+    std::cout << "Pointers match : " << (&original == recovered ? "YES" : "NO") << std::endl;
 
     return 0;
 }
