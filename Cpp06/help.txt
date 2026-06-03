@@ -1,0 +1,20 @@
+- static_cast — convertit une valeur entre types compatibles (ex: double → int)
+  
+- reinterpret_cast — relit les mêmes octets mémoire avec un autre type sans rien
+  calculer
+  
+- dynamic_cast — vérifie à l'exécution le vrai type d'un objet dans une hiérarchie
+  polymorphique
+  
+
+
+
+- static_cast — je veux changer le type d'une valeur et je sais que c'est safe
+- reinterpret_cast — je veux voir les mêmes octets mémoire autrement
+- dynamic_cast — je veux savoir le vrai type d'un objet au moment de l'exécution
+
+
+- static_cast — convertir la note d'un étudiant de double en int pour l'afficher
+- reinterpret_cast — envoyer une struct Joueur octet par octet sur un socket réseau
+- dynamic_cast — savoir si un Animal* pointe sur un Chien ou un Chat pour appeler
+aboyer()
