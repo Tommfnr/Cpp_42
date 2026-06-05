@@ -32,3 +32,30 @@ Array<T>& Array<T>::operator=(const Array& other)
     }
     return (*this);
 }
+
+template <typename T>
+Array<T>::~Array() {
+    delete[] _array;
+}
+
+template <typename T>
+T& Array<T>::operator[](unsigned int i)
+{
+    if (i >= _size)
+        throw std::exception();
+    return (_array[i]);
+}
+
+template <typename T>
+const T& Array<T>::operator[](unsigned int i) const
+{
+    if (i >= _size)
+        throw std::exception();
+    return (_array[i]);
+}
+
+template <typename T>
+unsigned int Array<T>::size() const
+{
+    return (_size);
+}

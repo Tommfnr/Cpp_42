@@ -1,6 +1,6 @@
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98 -MMD -MP
-NAME    = convert
+NAME    = iter
 
 SRC =   main.cpp \
 		
