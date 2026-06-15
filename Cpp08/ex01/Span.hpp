@@ -20,4 +20,6 @@ class Span
         void addNumber(unsigned int nb);
         int shortestSpan();
         int longestSpan();
+        
+        void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 };

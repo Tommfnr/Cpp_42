@@ -51,6 +51,19 @@ int Span::longestSpan() {
         throw std::exception();
 
     std::sort(_tab.begin(), _tab.end());
-    
+
     return (*(_tab.end() - 1) - *_tab.begin());
 }
+
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if (end < begin)
+        throw std::exception();
+
+    int dist = std::distance(begin, end);
+    if (_tab.size() + dist > _N)
+        throw std::exception();
+
+    _tab.insert(_tab.end(), begin, end);
+}
+
