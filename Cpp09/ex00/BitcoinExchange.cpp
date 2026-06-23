@@ -1,6 +1,7 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
 #include <cstdlib>
+#include <ctime>
 #include <iomanip>
 
 static bool isValidDate(const std::string& date) {
@@ -13,13 +14,19 @@ static bool isValidDate(const std::string& date) {
         if (!std::isdigit(date[i]))
             return false;
     }
-    int month = std::atoi(date.substr(5, 2).c_str());
-    int day = std::atoi(date.substr(8, 2).c_str());
-    if (month < 1 || month > 12)
-        return false;
-    if (day < 1 || day > 31)
-        return false;
-    return true;
+
+    struct tm t = {};
+    t.tm_year = std::atoi(date.substr(0, 4).c_str()) - 1900;
+    t.tm_mon  = std::atoi(date.substr(5, 2).c_str()) - 1;
+    t.tm_mday = std::atoi(date.substr(8, 2).c_str());
+
+    int day   = t.tm_mday;
+    int month = t.tm_mon;
+    int year  = t.tm_year;
+
+    mktime(&t);
+
+    return (t.tm_mday == day && t.tm_mon == month && t.tm_year == year);
 }
 
 static bool isValidValue(const std::string& str) {
