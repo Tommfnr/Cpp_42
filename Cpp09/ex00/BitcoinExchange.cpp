@@ -85,6 +85,8 @@ void BitcoinExchange::processInputFile(const std::string& filename) {
 
     std::string line;
     std::getline(inputFile, line);
+    if (line != "date | value")
+        throw std::runtime_error("Error: wrong header");
 
     while (std::getline(inputFile, line))
     {
