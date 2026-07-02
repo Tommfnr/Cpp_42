@@ -1,5 +1,12 @@
 #include "RPN.hpp"
 #include <iostream>
+#include <climits>
+
+static int checked(long long r) {
+    if (r > INT_MAX || r < INT_MIN)
+        throw std::runtime_error("Error: overflow");
+    return static_cast<int>(r);
+}
 
 RPN::RPN() {};
 
@@ -40,13 +47,13 @@ int RPN::proceed(const std::string& expr) {
                 throw std::runtime_error("Error");
             int b = _st.top(); _st.pop();
             int a = _st.top(); _st.pop();
-            if (expr[i] == '+') _st.push(a + b);
-            else if (expr[i] == '-') _st.push(a - b);
-            else if (expr[i] == '*') _st.push(a * b);
+            if (expr[i] == '+') _st.push(checked((long long)a + b));
+            else if (expr[i] == '-') _st.push(checked((long long)a - b));
+            else if (expr[i] == '*') _st.push(checked((long long)a * b));
             else if (expr[i] == '/')
             {
                 if (b == 0) throw std::runtime_error("Error: division by zero");
-                _st.push(a / b);
+                _st.push(checked((long long)a / b));
             }
             break;
         }
