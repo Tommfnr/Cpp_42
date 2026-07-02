@@ -31,7 +31,7 @@ static bool isValidDate(const std::string& date) {
 
 static bool isValidValue(const std::string& str) {
     size_t i = str.find_first_not_of(' ');
-    if (i == std::string::npos)
+    if (i != 0)
         return false;
     if (str[i] == '-')
         i++;
@@ -90,14 +90,14 @@ void BitcoinExchange::processInputFile(const std::string& filename) {
 
     while (std::getline(inputFile, line))
     {
-        size_t separator = line.find('|');
+        size_t separator = line.find(" | ");
         if (separator == std::string::npos) {
             std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
 
-        std::string date = line.substr(0, separator - 1);
-        std::string valueStr = line.substr(separator + 1);
+        std::string date = line.substr(0, separator);
+        std::string valueStr = line.substr(separator + 3);
 
         if (!isValidDate(date)) {
             std::cerr << "Error: bad input => " << date << std::endl;
