@@ -1,0 +1,6 @@
+# 42 subjects
+*.pdf
+
+# Build
+*.o
+*.d
